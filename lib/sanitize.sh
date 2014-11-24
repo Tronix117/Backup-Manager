@@ -152,6 +152,8 @@ confkey_require "BM_ARCHIVE_TTL" "5"
 confkey_handle_deprecated "BM_PURGE_DUPLICATES" "BM_ARCHIVE_PURGEDUPS"
 confkey_require "BM_ARCHIVE_PURGEDUPS" "true"
 
+confkey_require "BM_ARCHIVE_MASTERPURGE" "false" 
+
 confkey_handle_deprecated "BM_ARCHIVES_PREFIX" "BM_ARCHIVE_PREFIX"
 confkey_require "BM_ARCHIVE_PREFIX" "$HOSTNAME"
 

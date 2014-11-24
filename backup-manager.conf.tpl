@@ -51,6 +51,10 @@ export BM_ARCHIVE_FREQUENCY="daily"
 # directories under BM_REPOSITORY_ROOT?
 export BM_REPOSITORY_RECURSIVEPURGE="false"
 
+# By default master are only purged when a younger one exists
+# with this enabled, master is purge along other files
+export BM_ARCHIVE_MASTERPURGE="false"
+
 # Do you want to replace duplicates by symlinks? 
 # (archive-DAY is a duplicate of archive-(DAY - 1) if they 
 # are both the same according to MD5 hashes).

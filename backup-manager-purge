@@ -254,13 +254,22 @@ sub outdate_archives($$)
         # unless, nothing to do for that archive.
         next if ($data->{date} > $purge_date);
 
-        # we can outdate a master only if a younger master exists
         if ($data->{master}) {
-            foreach my $master_date (
-                keys %{$g_rh_archives->{$data->{name}}{pathByDateMasters}}) {
-                if ($master_date > $data->{date}) {
-                    push @{$ra_outdated}, $archive;
-                    last;
+            # outdate a master even if no younger master exists, tar doesn't 
+            # need master to do incremental backup
+            if ($ENV{BM_ARCHIVE_MASTERPURGE} eq "true") {
+                push @{$ra_outdated}, $archive;
+                last;
+            }
+
+            # we can outdate a master only if a younger master exists
+            else {
+                foreach my $master_date (
+                    keys %{$g_rh_archives->{$data->{name}}{pathByDateMasters}}){
+                    if ($master_date > $data->{date}) {
+                        push @{$ra_outdated}, $archive;
+                        last;
+                    }
                 }
             }
         }
